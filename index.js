@@ -25,7 +25,7 @@ const getMousePos = (e) => {
 // };
 
 const addCircle = () => {
-  if (shapes.length > 100) shapes.splice(0, 1);
+  if (shapes.length > 160) shapes.splice(0, 1);
   shapes.push({
     x: window.innerWidth * Math.random(),
     y: window.innerHeight * Math.random(),
@@ -60,8 +60,8 @@ const circle = () => {
     // if(ax>10) console.log(ax)
     // ax = Math.min(Math.max(ax, -1), 1);
     // ay = Math.min(Math.max(ay, -1), 1);
-    ax = Math.min(ax, 0.1);
-    ay = Math.min(ay, 0.1);
+    ax = Math.min(ax, 0.06);
+    ay = Math.min(ay, 0.06);
     ax *= cos;
     ay *= sin;
     console.log({ ax, ay });
@@ -82,8 +82,8 @@ const circle = () => {
     // shape.vx += ax;
     // shape.vy += ay;
 
-    shape.vx = Math.min(2, Math.max(-2, shape.vx + ax));
-    shape.vy = Math.min(2, Math.max(-2, shape.vy + ay));
+    shape.vx = Math.min(2.1, Math.max(-2.1, shape.vx + ax));
+    shape.vy = Math.min(2.1, Math.max(-2.1, shape.vy + ay));
 
     shape.x += shape.vx;
     shape.y += shape.vy;
