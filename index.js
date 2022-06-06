@@ -31,6 +31,8 @@ const addCircle = () => {
     y: window.innerHeight * Math.random(),
     radius: 3 * Math.random() + 1,
     color: "#" + Math.floor(Math.random() * 16777215).toString(16),
+    vx: 10,
+    vy: 10,
     // color: "white",
   });
 };
@@ -44,14 +46,35 @@ const circle = () => {
     ctx.arc(shape.x, shape.y, shape.radius, 0, Math.PI * 2);
     ctx.fillStyle = shape.color;
     ctx.fill();
-    let deltaX = (mousePos.x - shape.x) / (shape.radius * 10);
-    let deltaY = (mousePos.y - shape.y) / (shape.radius * 10);
-    if (exploding) {
-      deltaX *= -1;
-      deltaY *= -1;
+
+    const deltaX = mousePos.x - shape.x;
+    const deltaY = mousePos.y - shape.y;
+    const distance = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+    const sin = deltaY / distance;
+    const cos = deltaX / distance;
+    let vx = (distance / (shape.radius * 10)) * cos;
+    let vy = (distance / (shape.radius * 10)) * sin;
+    
+    if (Math.abs(shape.vx) < 1) console.log({ x: shape.vx, y: shape.vy });
+    if (Math.abs(vx) < 1) {
+      vx = shape.vx;
     }
-    shape.x += deltaX;
-    shape.y += deltaY;
+    if (Math.abs(vy) < 1) {
+      vy = shape.vy;
+    }
+
+    shape.vx = vx;
+    shape.vy = vy;
+    vx = 10 / vx;
+    vy = 10 / vy;
+    // if (vx > 10 || vy > 10) console.log({ vx, vy });
+    if (exploding) {
+      vx *= -1;
+      vy *= -1;
+    }
+
+    shape.x += vx;
+    shape.y += vy;
     return shape;
   });
 };
