@@ -30,7 +30,7 @@ const addCircle = () => {
     x: window.innerWidth * Math.random(),
     y: window.innerHeight * Math.random(),
     // radius: 3 * Math.random() + 1,
-    radius: 2,
+    radius: 1.7,
     color: "#" + Math.floor(Math.random() * 16777215).toString(16),
     vx: 0,
     vy: 0,
