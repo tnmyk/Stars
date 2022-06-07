@@ -102,9 +102,6 @@ canvas.addEventListener("mousemove", getMousePos);
 
 document.addEventListener("keydown", (e) => {
   switch (e.key) {
-    case " ":
-      addCircle();
-      break;
     case "e":
       setExplode();
       break;
@@ -118,3 +115,15 @@ document.addEventListener("keyup", () => {
 const setExplode = () => {
   exploding = true;
 };
+
+let addCircleInterval;
+canvas.addEventListener("mousedown", () => {
+  if (!addCircleInterval) {
+    addCircleInterval = setInterval(addCircle, 100);
+  }
+});
+canvas.addEventListener("mouseup", () => {
+  if (addCircleInterval) {
+    clearInterval(addCircleInterval);
+  }
+});
