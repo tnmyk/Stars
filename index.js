@@ -29,7 +29,6 @@ const addCircle = () => {
   shapes.push({
     x: window.innerWidth * Math.random(),
     y: window.innerHeight * Math.random(),
-    // radius: 3 * Math.random() + 1,
     radius: 1.7,
     color: "#" + Math.floor(Math.random() * 16777215).toString(16),
     vx: 0,
@@ -57,30 +56,15 @@ const circle = () => {
     let ax = shape.radius * 10 * Math.min(1 / Math.pow(distance, 1), 1);
     let ay = shape.radius * 10 * Math.min(1 / Math.pow(distance, 1), 1);
 
-    // if(ax>10) console.log(ax)
-    // ax = Math.min(Math.max(ax, -1), 1);
-    // ay = Math.min(Math.max(ay, -1), 1);
     ax = Math.min(ax, 0.06);
     ay = Math.min(ay, 0.06);
     ax *= cos;
     ay *= sin;
-    console.log({ ax, ay });
-    // let vx = (distance / (shape.radius * 10)) * cos;
-    // let vy = (distance / (shape.radius * 10)) * sin;
 
-    // let vx = (distance / (shape.radius * 10)) * cos;
-    // let vy = (distance / (shape.radius * 10)) * sin;
-    // if (Math.abs(shape.vx) < 1) console.log({ x: shape.vx, y: shape.vy });
-
-    // if(distance <  )
-    // if (vx > 10 || vy > 10) console.log({ vx, vy });
     if (exploding) {
       ax *= -1;
       ay *= -1;
     }
-
-    // shape.vx += ax;
-    // shape.vy += ay;
 
     shape.vx = Math.min(2.1, Math.max(-2.1, shape.vx + ax));
     shape.vy = Math.min(2.1, Math.max(-2.1, shape.vy + ay));
