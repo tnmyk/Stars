@@ -119,11 +119,12 @@ const setExplode = () => {
 let addCircleInterval;
 canvas.addEventListener("mousedown", () => {
   if (!addCircleInterval) {
-    addCircleInterval = setInterval(addCircle, 100);
+    addCircleInterval = setInterval(addCircle, 50);
   }
 });
 canvas.addEventListener("mouseup", () => {
   if (addCircleInterval) {
     clearInterval(addCircleInterval);
+    addCircleInterval = null;
   }
 });
