@@ -82,7 +82,9 @@ function animate(currentTime) {
   requestAnimationFrame(animate);
 }
 
-canvas.addEventListener("mousemove", getMousePos);
+["mousemove", "pointermove"].forEach((event) => {
+  canvas.addEventListener(event, getMousePos);
+});
 
 document.addEventListener("keydown", (e) => {
   switch (e.key) {
