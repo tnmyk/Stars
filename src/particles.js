@@ -1,11 +1,15 @@
 const shapes = [];
-const maxNumberOfParticles = 200;
-
+const options = {
+  maxNumberOfParticles: 200,
+  maxAbsAcceleration: 0.06,
+  maxSpeed: 2.1,
+};
 const genNewParticle = () => {
   return {
     x: window.innerWidth * Math.random(),
     y: window.innerHeight * Math.random(),
     radius: 1.7,
+    // Used to generate bright colors
     color: `hsla(${~~(360 * Math.random())},70%,80%,1)`,
     vx: 0,
     vy: 0,
@@ -13,7 +17,7 @@ const genNewParticle = () => {
 };
 
 export const addParticle = () => {
-  if (shapes.length > maxNumberOfParticles) shapes.splice(0, 1);
+  if (shapes.length > options.maxNumberOfParticles) shapes.splice(0, 1);
   const newParticle = genNewParticle();
   shapes.push(newParticle);
 };
@@ -36,18 +40,25 @@ export const circle = (ctx, canvas, mousePos, exploding) => {
     let ax = shape.radius * 10 * Math.min(1 / Math.pow(distance, 1), 1);
     let ay = shape.radius * 10 * Math.min(1 / Math.pow(distance, 1), 1);
 
-    ax = Math.min(ax, 0.06);
-    ay = Math.min(ay, 0.06);
+    ax = Math.min(ax, options.maxAbsAcceleration);
+    ay = Math.min(ay, options.maxAbsAcceleration);
     ax *= cos;
     ay *= sin;
 
+    // If exploding reverse the direction of acc
     if (exploding) {
       ax *= -1;
       ay *= -1;
     }
 
-    shape.vx = Math.min(2.1, Math.max(-2.1, shape.vx + ax));
-    shape.vy = Math.min(2.1, Math.max(-2.1, shape.vy + ay));
+    shape.vx = Math.min(
+      options.maxSpeed,
+      Math.max(-options.maxSpeed, shape.vx + ax)
+    );
+    shape.vy = Math.min(
+      options.maxSpeed,
+      Math.max(-options.maxSpeed, shape.vy + ay)
+    );
 
     shape.x += shape.vx;
     shape.y += shape.vy;
