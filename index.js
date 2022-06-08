@@ -25,7 +25,7 @@ const getMousePos = (e) => {
 // };
 
 const addCircle = () => {
-  if (shapes.length > 160) shapes.splice(0, 1);
+  if (shapes.length > 180) shapes.splice(0, 1);
   shapes.push({
     x: window.innerWidth * Math.random(),
     y: window.innerHeight * Math.random(),
@@ -101,14 +101,20 @@ const setExplode = () => {
 };
 
 let addCircleInterval;
-canvas.addEventListener("mousedown", () => {
-  if (!addCircleInterval) {
-    addCircleInterval = setInterval(addCircle, 50);
-  }
+
+["mousedown", "pointerdown"].forEach((event) => {
+  canvas.addEventListener(event, () => {
+    if (!addCircleInterval) {
+      addCircleInterval = setInterval(addCircle, 50);
+    }
+  });
 });
-canvas.addEventListener("mouseup", () => {
-  if (addCircleInterval) {
-    clearInterval(addCircleInterval);
-    addCircleInterval = null;
-  }
+
+["mouseup", "pointerup"].forEach((event) => {
+  canvas.addEventListener(event, () => {
+    if (addCircleInterval) {
+      clearInterval(addCircleInterval);
+      addCircleInterval = null;
+    }
+  });
 });
