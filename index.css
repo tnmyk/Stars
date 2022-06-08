@@ -7,5 +7,7 @@
 #canvas {
   display: block;
   background-color: black;
+
+  /* Required to use 'pointermove' event in mobile devices  */
   touch-action: none;
 }
