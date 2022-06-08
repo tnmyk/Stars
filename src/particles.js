@@ -4,6 +4,7 @@ const options = {
   maxAbsAcceleration: 0.06,
   maxSpeed: 2.1,
 };
+
 const genNewParticle = () => {
   return {
     x: window.innerWidth * Math.random(),
@@ -22,9 +23,9 @@ export const addParticle = () => {
   shapes.push(newParticle);
 };
 
-export const circle = (ctx, canvas, mousePos, exploding) => {
+export const draw = (ctx, canvas, mousePos, exploding) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  shapes.map((shape) => {
+  shapes.forEach((shape) => {
     ctx.beginPath();
     ctx.arc(shape.x, shape.y, shape.radius, 0, Math.PI * 2);
     ctx.fillStyle = shape.color;
@@ -42,6 +43,7 @@ export const circle = (ctx, canvas, mousePos, exploding) => {
 
     ax = Math.min(ax, options.maxAbsAcceleration);
     ay = Math.min(ay, options.maxAbsAcceleration);
+
     ax *= cos;
     ay *= sin;
 
@@ -55,6 +57,7 @@ export const circle = (ctx, canvas, mousePos, exploding) => {
       options.maxSpeed,
       Math.max(-options.maxSpeed, shape.vx + ax)
     );
+
     shape.vy = Math.min(
       options.maxSpeed,
       Math.max(-options.maxSpeed, shape.vy + ay)

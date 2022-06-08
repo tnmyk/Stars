@@ -1,4 +1,4 @@
-import { addParticle, circle } from "./particles.js";
+import { addParticle, draw } from "./particles.js";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -22,7 +22,7 @@ addParticle();
 requestAnimationFrame(animate);
 function animate() {
   // request another loop of animation
-  circle(ctx, canvas, mousePos, exploding);
+  draw(ctx, canvas, mousePos, exploding);
   requestAnimationFrame(animate);
 }
 
@@ -49,7 +49,6 @@ document.addEventListener("keyup", () => {
 });
 
 let addParticleInterval;
-
 ["mousedown", "pointerdown"].forEach((event) => {
   canvas.addEventListener(event, () => {
     if (!addParticleInterval) {
