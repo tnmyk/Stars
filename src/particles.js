@@ -1,4 +1,4 @@
-const shapes = [];
+const particles = [];
 const options = {
   maxNumberOfParticles: 200,
   maxAbsAcceleration: 0.06,
@@ -18,14 +18,14 @@ const genNewParticle = () => {
 };
 
 export const addParticle = () => {
-  if (shapes.length > options.maxNumberOfParticles) shapes.splice(0, 1);
+  if (particles.length > options.maxNumberOfParticles) particles.splice(0, 1);
   const newParticle = genNewParticle();
-  shapes.push(newParticle);
+  particles.push(newParticle);
 };
 
 export const draw = (ctx, canvas, mousePos, exploding) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  shapes.forEach((shape) => {
+  particles.forEach((shape) => {
     ctx.beginPath();
     ctx.arc(shape.x, shape.y, shape.radius, 0, Math.PI * 2);
     ctx.fillStyle = shape.color;
