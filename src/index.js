@@ -38,7 +38,7 @@ const getMousePos = (e) => {
 
 document.addEventListener("keydown", (e) => {
   switch (e.key) {
-    case "e":
+    case " ":
       exploding = true;
       break;
   }
