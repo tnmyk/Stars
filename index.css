@@ -38,7 +38,9 @@ nav {
   padding: 1.4rem 1.5rem;
   pointer-events: none;
 }
-
+nav a {
+  pointer-events: all;
+}
 .nav-guide {
   display: flex;
   column-gap: 2rem;
