@@ -7,7 +7,6 @@ canvas.height = window.innerHeight;
 
 ctx.font = "14px serif";
 ctx.fillStyle = "#000";
-ctx.fillText(`x:0 y:0`, 15, 20);
 
 let mousePos = {
   x: window.innerWidth,
