@@ -1,8 +1,8 @@
 const particles = [];
 const options = {
   maxNumberOfParticles: 200,
-  maxAbsAcceleration: 0.06,
-  maxSpeed: 2.1,
+  maxAbsAcceleration: 0.09,
+  maxSpeed: 2.5,
 };
 
 const genNewParticle = () => {
