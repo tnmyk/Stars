@@ -1,6 +1,6 @@
 const particles = [];
 const options = {
-  maxNumberOfParticles: 200,
+  maxNumberOfParticles: 170,
   maxAbsAcceleration: 0.09,
   maxSpeed: 2.5,
 };
