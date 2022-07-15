@@ -9,8 +9,8 @@ ctx.font = "14px serif";
 ctx.fillStyle = "#000";
 
 let mousePos = {
-  x: window.innerWidth/2,
-  y: window.innerHeight/2,
+  x: window.innerWidth / 2,
+  y: window.innerHeight / 2,
 };
 
 let exploding = false;
@@ -61,7 +61,7 @@ let addParticleInterval;
 
 ["mouseup", "touchend"].forEach((event) => {
   canvas.addEventListener(event, (e) => {
-    if (event === "touchend" && e.touches.length > 1) {
+    if (event === "touchend" && e.touches.length > 0) {
       return (exploding = false);
     }
     if (addParticleInterval) {
@@ -69,8 +69,4 @@ let addParticleInterval;
       addParticleInterval = null;
     }
   });
-});
-
-canvas.addEventListener("touchstart", () => {
-  console.log("Sadsadasd");
 });
