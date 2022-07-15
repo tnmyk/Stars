@@ -4,6 +4,7 @@
   box-sizing: border-box;
   color: #eee;
   font-family: monospace;
+  user-select: none;
 }
 
 #canvas {
