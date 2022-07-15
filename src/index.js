@@ -9,8 +9,8 @@ ctx.font = "14px serif";
 ctx.fillStyle = "#000";
 
 let mousePos = {
-  x: window.innerWidth,
-  y: window.innerHeight,
+  x: window.innerWidth/2,
+  y: window.innerHeight/2,
 };
 
 let exploding = false;
@@ -48,19 +48,29 @@ document.addEventListener("keyup", () => {
 });
 
 let addParticleInterval;
-["mousedown", "pointerdown"].forEach((event) => {
-  canvas.addEventListener(event, () => {
+["mousedown", "touchstart"].forEach((event) => {
+  canvas.addEventListener(event, (e) => {
+    if (event === "touchstart" && e.touches.length > 1) {
+      return (exploding = true);
+    }
     if (!addParticleInterval) {
       addParticleInterval = setInterval(addParticle, 50);
     }
   });
 });
 
-["mouseup", "pointerup"].forEach((event) => {
-  canvas.addEventListener(event, () => {
+["mouseup", "touchend"].forEach((event) => {
+  canvas.addEventListener(event, (e) => {
+    if (event === "touchend" && e.touches.length > 1) {
+      return (exploding = false);
+    }
     if (addParticleInterval) {
       clearInterval(addParticleInterval);
       addParticleInterval = null;
     }
   });
+});
+
+canvas.addEventListener("touchstart", () => {
+  console.log("Sadsadasd");
 });

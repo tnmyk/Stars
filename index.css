@@ -40,8 +40,28 @@ nav {
 }
 nav a {
   pointer-events: all;
+  text-decoration: none;
 }
-.nav-guide {
+
+.nav-guide-large {
   display: flex;
   column-gap: 2rem;
+}
+
+.nav-guide-mobile {
+  display: none;
+  column-gap: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 800px) {
+  .nav-guide-large {
+    display: none;
+  }
+  .nav-guide-mobile {
+    display: flex;
+  }
+  nav {
+    font-size: 0.8rem;
+  }
 }
